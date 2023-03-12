@@ -8,18 +8,22 @@ do{
     Console.WriteLine("2 - Adicionar Transação");
     Console.WriteLine("3 - Consultar Extrato");
     Console.WriteLine("4 - Exibir Clientes");
-    Console.WriteLine("5 - Sair");
+    Console.WriteLine("5 - Verificar compatibilidade");
+    Console.WriteLine("6 - Sair");
     opcao = Console.ReadLine();
 
     if(opcao == "1"){
         CriarConta();
     }
     if(opcao == "4"){
-    ExibirClientes();
+        ExibirClientes();
+    }
+    if(opcao == "5"){
+        VerificarCompatibilidade();
     }
     Console.WriteLine("Enter para continuar");
     Console.ReadLine();
-} while(opcao != "5");
+} while(opcao != "6");
 
 
 void ExibirClientes(){
@@ -43,16 +47,29 @@ void CriarConta(){
     
     Console.WriteLine("Nome do cliente:");
     cliente.Nome = Console.ReadLine();
-    Console.WriteLine("CPF do cliente");
+    Console.WriteLine("CPF do cliente:");
     cliente.CPF = Console.ReadLine();
-    Console.WriteLine("Endereço do cliente");
+    Console.WriteLine("Endereço do cliente:");
     cliente.Endereço = Console.ReadLine();
-    
-    Console.WriteLine("Telefone do cliente");
+    Console.WriteLine("Banco do cliente:");
+    cliente.TipoBancario = Console.ReadLine();
+    Console.WriteLine("Telefone do cliente:");
     cliente.Telefone = Console.ReadLine();
-    Console.WriteLine("Email do cliente");
+    Console.WriteLine("Email do cliente:");
     cliente.Email = Console.ReadLine();
-    Console.WriteLine("Numero da conta do cliente");
+    Console.WriteLine("Numero da conta do cliente:");
     cliente.NumeroConta = int.Parse(Console.ReadLine());
     clientes.Add(cliente);
+}
+void VerificarCompatibilidade(){
+    Cliente cliente = new Cliente();
+    Console.WriteLine("Qual sua Agencia Bancaria?");
+    cliente.TipoBancario = Console.ReadLine();
+    if(cliente.TipoBancario == "itau"){
+        Console.WriteLine("Sua conta é compativel");
+    }else if(cliente.TipoBancario == "Caixa" ){
+        Console.WriteLine("Sua conta é compativel");
+    }else{
+        Console.WriteLine("Desculpe, não trabalhamos com essa agencia");
+    }
 }
