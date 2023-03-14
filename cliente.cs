@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*Isso é a classe*/
 namespace M1S3_SisteminhaBancario
 {
     public class Cliente

@@ -1,4 +1,8 @@
-﻿using M1S3_SisteminhaBancario;
+﻿/*os metodos e similares sao aqui*/
+
+
+
+using M1S3_SisteminhaBancario;
 
 List<Cliente> clientes = new List<Cliente>();
 
