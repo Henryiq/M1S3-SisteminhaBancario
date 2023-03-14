@@ -42,31 +42,32 @@ void AdicionarTransaçao(){
         Console.WriteLine("Qual a conta?");
         int NumeroConta = int.Parse(Console.ReadLine());
 
-Cliente contaCliente = null;
-    /*foreach(var cliente in clientes){
-        if(cliente.NumeroConta == NumeroConta){
-            contaCliente = cliente;
-        }*/
-        //ou, ja q sao a mesma coisa
-    for(int i = 0 ; i < clientes.Count; i++){
-        if(clientes[i].NumeroConta == NumeroConta){
-            contaCliente = clientes[i];
-            break;
-            //break é similar ao return, so q o return erve so pra metodos
-        }
-    }
+Cliente contaCliente = BuscarClientePorNumeroDeConta(NumeroConta);
+
     if (contaCliente == null){
             Console.WriteLine("Connta nao cadastrada, favor cadastrar antes");
             return;
         }
     Console.WriteLine("Qual o valor da transação?");
         double valor = double.Parse(Console.ReadLine());
-        Transaçao transacao = new Transaçao();
-        transacao.Data = DateTime.Now;
-        transacao.Valor = valor;
+        Transaçao transacao = new Transaçao(DateTime.Now, valor);
 
         contaCliente.Extrato.Add(transacao);
-
+}
+Cliente BuscarClientePorNumeroDeConta(int NumeroConta){
+    foreach(var cliente in clientes){
+        if(cliente.NumeroConta == NumeroConta){
+            return cliente;
+        }
+        //ou, ja q sao a mesma coisa
+    /*for(int i = 0 ; i < clientes.Count; i++){
+        if(clientes[i].NumeroConta == NumeroConta){
+            contaCliente = clientes[i];
+            break;
+            //break é similar ao return, so q o return erve so pra metodos
+        }*/
+    }
+    return null;
 }
 
         
