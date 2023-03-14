@@ -1,6 +1,16 @@
 ﻿using M1S3_SisteminhaBancario;
 
 List<Cliente> clientes = new List<Cliente>();
+
+clientes.Add(new Cliente("vito", "1234567", "henrys@gmail", "123", "rua", new DateTime(2007,05,06), 1 ));
+
+clientes.Add(new Cliente("viato", "12345678", "henryd@gmail", "1234", "rua", new DateTime(2006,05,06), 2 ));
+
+clientes.Add(new Cliente("vouito", "12345679", "henryf@gmail", "1235", "rua", new DateTime(2005,05,06), 3 ));
+
+clientes.Add(new Cliente("vaeiito", "12345670", "henrgy@gmail", "1236", "rua", new DateTime(2004,05,06), 4 ));
+
+
 string opcao;
 do{
     Console.WriteLine("Bem vindos ao BANCO FULL STACK, escolha uma opção");
@@ -15,6 +25,9 @@ do{
     if(opcao == "1"){
         CriarConta();
     }
+    if(opcao == "2"){
+        AdicionarTransaçao();
+    }
     if(opcao == "4"){
         ExibirClientes();
     }
@@ -24,6 +37,39 @@ do{
     Console.WriteLine("Enter para continuar");
     Console.ReadLine();
 } while(opcao != "6");
+
+void AdicionarTransaçao(){
+        Console.WriteLine("Qual a conta?");
+        int NumeroConta = int.Parse(Console.ReadLine());
+
+Cliente contaCliente = null;
+    /*foreach(var cliente in clientes){
+        if(cliente.NumeroConta == NumeroConta){
+            contaCliente = cliente;
+        }*/
+        //ou, ja q sao a mesma coisa
+    for(int i = 0 ; i < clientes.Count; i++){
+        if(clientes[i].NumeroConta == NumeroConta){
+            contaCliente = clientes[i];
+            break;
+            //break é similar ao return, so q o return erve so pra metodos
+        }
+    }
+    if (contaCliente == null){
+            Console.WriteLine("Connta nao cadastrada, favor cadastrar antes");
+            return;
+        }
+    Console.WriteLine("Qual o valor da transação?");
+        double valor = double.Parse(Console.ReadLine());
+        Transaçao transacao = new Transaçao();
+        transacao.Data = DateTime.Now;
+        transacao.Valor = valor;
+
+        contaCliente.Extrato.Add(transacao);
+
+}
+
+        
 
 
 void ExibirClientes(){
